@@ -194,11 +194,11 @@
 
         /* Answer Reveal Feature */
         .answer-hidden {
-            display: none;
+            display: none !important;
         }
 
         .answer-visible {
-            display: inline-block;
+            display: flex !important;
             animation: popIn 0.3s ease-out;
         }
 
@@ -343,7 +343,7 @@
 
                 <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
                     <h3 class="font-bold text-xl mb-3 text-blue-800">1) Continuous가 자주 쓰이는 경우</h3>
-                    <p class="text-base text-slate-600 mb-3">특히 <strong>How long</strong>과 함께 자주 사용</p>
+                    <p class="text-base text-slate-600 mb-3">특히 <strong>얼마나 오래 (How long)</strong>라고 물을 때</p>
                     <ul class="list-disc list-inside text-lg space-y-1">
                         <li>I've been learning English since January.</li>
                         <li>It's been raining all morning.</li>
@@ -387,7 +387,12 @@
             <div class="content-body flex gap-8 h-full items-center pb-12">
 
                 <!-- FOR Box -->
-                <div class="flex-1 bg-white border-2 border-indigo-200 rounded-2xl p-8 shadow-sm h-full flex flex-col">
+                <div class="flex-1 bg-white border-2 border-indigo-200 rounded-2xl p-8 shadow-sm h-full flex flex-col relative cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all group"
+                    onclick="toggleForDetails(event)">
+                    <div
+                        class="absolute top-4 right-4 bg-indigo-100 text-indigo-600 text-sm font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-hand-pointer mr-1"></i>특징 보기
+                    </div>
                     <div class="flex items-center gap-4 mb-6">
                         <div
                             class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-3xl">
@@ -435,6 +440,63 @@
                         <li>Emily has been working here <strong>since April</strong>.</li>
                         <li>I haven't seen Tom <strong>since Monday</strong>.</li>
                     </ul>
+                </div>
+
+                <!-- For Details Modal Container within Slide 5 -->
+                <div id="for-details-modal"
+                    class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+                    <div class="bg-white rounded-2xl p-8 max-w-4xl w-[90%] shadow-2xl transform scale-95 transition-transform duration-300 border-4 border-indigo-200"
+                        id="for-details-content" onclick="event.stopPropagation()">
+                        <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-200">
+                            <h3 class="text-3xl font-black text-indigo-600 flex items-center gap-3"><i
+                                    class="fa-solid fa-star"></i> for 특징 정리</h3>
+                            <button class="text-slate-400 hover:text-red-500 text-3xl font-bold transition"
+                                onclick="toggleForDetails(event)"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6 text-xl">
+                            <div
+                                class="bg-indigo-50/70 p-5 rounded-xl border border-indigo-100 flex flex-col justify-center">
+                                <h4 class="font-bold text-indigo-800 mb-3 flex items-center gap-2"><span
+                                        class="bg-indigo-600 text-white w-7 h-7 rounded flex items-center justify-center text-sm">1️⃣</span>
+                                    긍정문 <span class="text-base font-normal text-slate-500 ml-1">(for 생략 가능)</span></h4>
+                                <p class="mb-3 text-slate-700">They’ve been married <strong>(for)</strong> 10 years</p>
+                                <div
+                                    class="text-indigo-700 font-bold bg-indigo-100/80 inline-block px-3 py-1 rounded text-base">
+                                    👉 for 생략 가능</div>
+                            </div>
+                            <div class="bg-red-50/70 p-5 rounded-xl border border-red-100 flex flex-col justify-center">
+                                <h4 class="font-bold text-red-800 mb-3 flex items-center gap-2"><span
+                                        class="bg-red-600 text-white w-7 h-7 rounded flex items-center justify-center text-sm">2️⃣</span>
+                                    부정문 <span class="text-base font-normal text-slate-500 ml-1">(for 필수)</span></h4>
+                                <p class="mb-3 text-slate-700">I haven’t had a vacation <strong>for</strong> 10 years
+                                </p>
+                                <div
+                                    class="text-red-700 font-bold bg-red-100/80 inline-block px-3 py-1 rounded text-base">
+                                    ❗ for 생략 ❌</div>
+                            </div>
+                            <div
+                                class="bg-emerald-50/70 p-5 rounded-xl border border-emerald-100 flex flex-col justify-center">
+                                <h4 class="font-bold text-emerald-800 mb-3 flex items-center gap-2"><span
+                                        class="bg-emerald-600 text-white w-7 h-7 rounded flex items-center justify-center text-sm">3️⃣</span>
+                                    부정문에서 in 사용 <span class="text-base font-normal text-slate-500 ml-1">(for 대신)</span>
+                                </h4>
+                                <p class="mb-3 text-slate-700">I haven’t had a vacation <strong>in</strong> 10 years</p>
+                                <div
+                                    class="text-emerald-700 font-bold bg-emerald-100/80 inline-block px-3 py-1 rounded text-base">
+                                    👉 for = in (같은 의미)</div>
+                            </div>
+                            <div
+                                class="bg-amber-50/70 p-5 rounded-xl border border-amber-100 flex flex-col justify-center">
+                                <h4 class="font-bold text-amber-800 mb-3 flex items-center gap-2"><span
+                                        class="bg-amber-600 text-white w-7 h-7 rounded flex items-center justify-center text-sm">4️⃣</span>
+                                    all과 for은 같이 안 씀</h4>
+                                <p class="mb-3 text-slate-700">I’ve lived here <strong>all</strong> my life</p>
+                                <div
+                                    class="text-red-600 font-bold bg-red-100/80 inline-block px-3 py-1 rounded text-base">
+                                    ❌ <span class="line-through">for all my life</span> (틀림)</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -603,7 +665,133 @@
             </div>
         </div>
 
-        <!-- Slide 9: Why This Is Creative -->
+        <!-- Slide 9: Grammar Quiz Game -->
+        <div id="slide-quiz-game" class="slide bg-slate-50 relative overflow-hidden flex flex-col">
+            <h2 class="slide-title !border-blue-500 !text-slate-800 after:bg-blue-600">Grammar Quiz Game <span
+                    class="text-sm font-normal text-slate-500 ml-4">버튼을 눌러 퀴즈를 시작하세요</span></h2>
+
+            <div id="quiz-container"
+                class="content-body flex-grow flex flex-col justify-center items-center w-full px-12 py-6 relative">
+
+                <!-- 1. Difficulty Selection View -->
+                <div id="quiz-view-home"
+                    class="w-full max-w-4xl bg-white rounded-3xl shadow-xl p-10 text-center transition-all duration-500">
+                    <h3 class="text-4xl font-black text-blue-800 mb-4 tracking-tight">Grammar Challenge</h3>
+                    <p class="text-xl text-slate-600 mb-10">난이도를 선택하고 10문제를 풀어 실력을 테스트해보세요!</p>
+
+                    <div class="grid grid-cols-3 gap-6">
+                        <button onclick="quizGame.start('low')"
+                            class="flex flex-col items-center justify-center bg-green-50 hover:bg-green-100 hover:shadow-lg hover:-translate-y-2 border-2 border-green-200 rounded-2xl p-8 transition-all group">
+                            <span class="text-6xl mb-4 group-hover:scale-110 transition-transform">🌱</span>
+                            <span class="text-2xl font-bold text-green-800 mb-2">하 (Low)</span>
+                            <span class="text-base text-green-600 font-medium whitespace-nowrap">객관식 4지선다</span>
+                        </button>
+
+                        <button onclick="quizGame.start('medium')"
+                            class="flex flex-col items-center justify-center bg-blue-50 hover:bg-blue-100 hover:shadow-lg hover:-translate-y-2 border-2 border-blue-200 rounded-2xl p-8 transition-all group">
+                            <span class="text-6xl mb-4 group-hover:scale-110 transition-transform">🚀</span>
+                            <span class="text-2xl font-bold text-blue-800 mb-2">중 (Medium)</span>
+                            <span class="text-base text-blue-600 font-medium whitespace-nowrap">빈칸 채우기 (단답형)</span>
+                        </button>
+
+                        <button onclick="quizGame.start('high')"
+                            class="flex flex-col items-center justify-center bg-purple-50 hover:bg-purple-100 hover:shadow-lg hover:-translate-y-2 border-2 border-purple-200 rounded-2xl p-8 transition-all group">
+                            <span class="text-6xl mb-4 group-hover:scale-110 transition-transform">🔥</span>
+                            <span class="text-2xl font-bold text-purple-800 mb-2">상 (High)</span>
+                            <span class="text-base text-purple-600 font-medium whitespace-nowrap">영작 서술형</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Question View -->
+                <div id="quiz-view-question"
+                    class="hidden absolute inset-0 bg-white z-10 p-6 flex flex-col transition-all duration-500 overflow-y-auto">
+                    <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-200 shrink-0">
+                        <div class="flex items-center gap-4">
+                            <span id="quiz-level-badge"
+                                class="px-3 py-1 rounded-full font-bold text-base text-white">LOW</span>
+                            <span class="text-slate-500 font-medium text-base">Question <span id="quiz-current-num"
+                                    class="text-slate-800 font-bold text-lg">1</span> / 10</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="text-slate-500 font-medium tracking-wide border-r border-slate-300 pr-4 text-sm">
+                                SCORE:
+                                <span id="quiz-score-display" class="font-bold text-blue-600 text-lg">0</span>
+                            </div>
+                            <button onclick="quizGame.reroll()"
+                                class="text-slate-500 hover:text-slate-800 font-bold transition flex items-center gap-2 group text-sm">
+                                <i
+                                    class="fa-solid fa-dice group-hover:rotate-180 transition-transform duration-300"></i>
+                                리롤
+                            </button>
+                            <button onclick="quizGame.goHome()"
+                                class="text-slate-400 hover:text-red-500 transition px-2 ml-2">
+                                <i class="fa-solid fa-house"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex-grow flex flex-col justify-center items-center w-full min-h-0 py-2">
+                        <div class="text-center mb-6 w-full max-w-4xl shrink-0">
+                            <h4 id="quiz-question-text"
+                                class="text-3xl font-bold text-slate-800 leading-snug break-keep">Question text here
+                            </h4>
+                        </div>
+
+                        <div id="quiz-answer-area" class="w-full max-w-3xl mx-auto flex flex-col gap-3 shrink-0">
+                            <!-- Answer Area injected here -->
+                        </div>
+
+                        <!-- Feedback Area -->
+                        <div id="quiz-feedback"
+                            class="hidden mt-4 text-center px-6 py-3 rounded-xl font-bold text-xl transition-all duration-300 w-full max-w-3xl border-2 shrink-0">
+                        </div>
+
+                        <div id="quiz-next-btn-container" class="hidden text-center mt-6 shrink-0">
+                            <button id="quiz-next-btn" onclick="quizGame.nextQuestion()"
+                                class="bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">Next
+                                Question <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Result View -->
+                <div id="quiz-view-result"
+                    class="hidden absolute inset-0 bg-white z-20 p-6 flex flex-col items-center justify-center text-center transition-all duration-500 overflow-y-auto">
+                    <div class="flex-grow flex flex-col items-center justify-center my-4">
+                        <h3 class="text-4xl font-black text-slate-800 mb-2">Quiz Complete!</h3>
+                        <p class="text-xl text-slate-500 mb-6">최종 결과</p>
+
+                        <div
+                            class="relative w-48 h-48 flex items-center justify-center bg-slate-50 rounded-full border-8 border-slate-100 shadow-inner mb-6">
+                            <div class="flex flex-col items-center">
+                                <span id="quiz-final-score" class="text-6xl font-black text-slate-800">10<span
+                                        class="text-3xl text-slate-400">/10</span></span>
+                                <span class="text-slate-400 font-bold mt-1 text-sm tracking-widest">SCORE</span>
+                            </div>
+                        </div>
+
+                        <div id="quiz-final-grade"
+                            class="text-5xl font-black px-10 py-3 rounded-2xl mb-8 shadow-lg text-white">A+</div>
+
+                        <div class="flex gap-4">
+                            <button onclick="quizGame.goHome()"
+                                class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-lg px-8 py-3 rounded-xl shadow transition-all hover:-translate-y-1">
+                                <i class="fa-solid fa-house mr-2"></i> 홈으로
+                            </button>
+                            <button onclick="quizGame.retry()"
+                                class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-8 py-3 rounded-xl shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
+                                <i class="fa-solid fa-rotate-right mr-2"></i> 다시 풀기 (Retry)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 10: Why This Is Creative -->
         <div class="slide bg-white">
             <h2 class="slide-title">Why This Is Creative</h2>
             <div class="content-body flex flex-col justify-center h-full">
@@ -746,36 +934,50 @@
             <h2 class="slide-title">Development Process Log</h2>
             <div class="content-body flex gap-10">
 
-                <div class="w-1/2 flex flex-col justify-between">
-                    <div class="relative pl-8 border-l-2 border-blue-200 space-y-6">
+                <div class="w-1/2 flex flex-col">
+                    <div class="mb-5 bg-slate-100 p-4 rounded-xl border border-slate-200">
+                        <strong class="text-blue-800 font-bold"><i class="fa-solid fa-wrench mr-2"></i>사용한 AI
+                            Tool:</strong>
+                        <span class="text-slate-700 ml-2 font-medium">Chat-gpt, Gemini-Canvas, Antigravity</span>
+                    </div>
+
+                    <div class="relative pl-8 border-l-2 border-blue-200 space-y-4 flex-grow">
 
                         <div class="relative">
                             <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
                             </div>
-                            <h4 class="font-bold text-xl text-slate-800">Step 1. Textbook Analysis</h4>
-                            <p class="text-base text-slate-600 mt-1">Unit 11–12 핵심 문법 포인트 정리 및 예문 유형 분류 (How long,
+                            <h4 class="font-bold text-lg text-slate-800">Step 1. Textbook Analysis</h4>
+                            <p class="text-sm text-slate-600 mt-1">Unit 11–12 핵심 문법 포인트 정리 및 예문 유형 분류 (How long,
                                 for/since 등)</p>
                         </div>
 
                         <div class="relative">
                             <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
                             </div>
-                            <h4 class="font-bold text-xl text-slate-800">Step 2. Prompt Design</h4>
-                            <p class="text-base text-slate-600 mt-1">AI에게 교재 요약, 난이도 분류, 퀴즈 형식 아이디어 및 구조 설계 요청</p>
+                            <h4 class="font-bold text-lg text-slate-800">Step 2. 내용 정리 및 기획</h4>
+                            <p class="text-sm text-slate-600 mt-1">Chap-gpt한테 교재 내용 정리, 슬라이드 구성 요청, 교재 예문 리스트 요청</p>
                         </div>
 
                         <div class="relative">
                             <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
                             </div>
-                            <h4 class="font-bold text-xl text-slate-800">Step 3. Prototype Development</h4>
-                            <p class="text-base text-slate-600 mt-1">HTML 슬라이드 구조, 방향키 이동, JS 랜덤 출제 및 점수 계산 구현</p>
+                            <h4 class="font-bold text-lg text-slate-800">Step 3. HTML 뼈대 구축</h4>
+                            <p class="text-sm text-slate-600 mt-1">Gemini-Canvas한테 ppt제작 프롬프트 입력 -> HTML 코드로 변경</p>
                         </div>
 
                         <div class="relative">
                             <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
                             </div>
-                            <h4 class="font-bold text-xl text-slate-800">Step 4. Revision</h4>
-                            <p class="text-base text-slate-600 mt-1">문법 오류 수정, UI 정리, 예문 중복 제거 및 결과 기준 최종 조정</p>
+                            <h4 class="font-bold text-lg text-slate-800">Step 4. 코드 고도화</h4>
+                            <p class="text-sm text-slate-600 mt-1">Antigravity에 파일 불러오기 -> HTML 슬라이드 구조 정리, 방향키 이동, JS
+                                랜덤 출제 및 점수 계산 구현</p>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
+                            </div>
+                            <h4 class="font-bold text-lg text-slate-800">Step 5. 최종 조정</h4>
+                            <p class="text-sm text-slate-600 mt-1">문법 오류 점검, UI 정리 등 최종 자가 조정 및 완성</p>
                         </div>
 
                     </div>
@@ -1015,10 +1217,18 @@
                     </p>
                 </div>
 
-                <div class="absolute bottom-16 right-16 text-slate-600 font-bold text-4xl opacity-50">
-                    Thank You
-                </div>
+            </div>
+        </div>
 
+        <!-- Slide 15: Thank You -->
+        <div class="slide bg-blue-600 text-white flex flex-col items-center justify-center text-center">
+            <div class="animate-bounce mb-8">
+                <i class="fa-solid fa-star text-yellow-300 text-6xl"></i>
+            </div>
+            <h1 class="text-[6rem] leading-none font-black mb-6 tracking-wide drop-shadow-lg">Thank You!</h1>
+            <p class="text-3xl font-medium text-blue-200 mt-4">Questions & Answers</p>
+            <div class="absolute bottom-12 right-12 text-blue-400 font-bold text-2xl">
+                202210127 이유한
             </div>
         </div>
 
@@ -1031,7 +1241,7 @@
     <!-- Navigation UI -->
     <div id="nav-ui">
         <button id="prevBtn" title="Previous Slide (Left Arrow)"><i class="fa-solid fa-chevron-left"></i></button>
-        <span id="slide-counter" class="font-mono font-bold text-sm w-12 text-center">1 / 14</span>
+        <span id="slide-counter" class="font-mono font-bold text-sm w-16 text-center whitespace-nowrap">1 / 15</span>
         <button id="nextBtn" title="Next Slide (Right Arrow/Space)"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
@@ -1101,6 +1311,22 @@
             }
         });
 
+        // For Details Modal Logic
+        window.toggleForDetails = function (e) {
+            if (e) e.stopPropagation();
+            const modal = document.getElementById('for-details-modal');
+            const content = document.getElementById('for-details-content');
+            if (modal.classList.contains('opacity-0')) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+            }
+        };
+
         // Answer Toggle Logic for Slide 13
         window.checkAnswer = function (id, selected, correct, correctText) {
             const el = document.getElementById(id);
@@ -1126,6 +1352,240 @@
             const el = document.getElementById(id);
             el.classList.remove('answer-visible');
             el.classList.add('answer-hidden');
+        };
+
+        // === QUIZ GAME LOGIC ===
+        // 사용 방법: 이 코드는 문법 퀴즈 게임을 구동하기 위한 핵심 로직과 90개의 데이터가 포함되어 있습니다.
+        const quizData = {
+            low: [
+                { q: "It’s been raining ___ lunchtime.", o: ["for", "since", "from", "during"], a: "since" },
+                { q: "Sarah has lived in Seattle ___ 2015.", o: ["for", "since", "at", "in"], a: "since" },
+                { q: "Dan has lived in Brazil ___ ten years.", o: ["since", "for", "at", "in"], a: "for" },
+                { q: "We’ve been sitting here ___ an hour.", o: ["since", "for", "at", "by"], a: "for" },
+                { q: "Kevin has been looking for a job ___ he left school.", o: ["for", "since", "during", "while"], a: "since" },
+                { q: "I haven’t been to a party ___ ages.", o: ["since", "for", "in", "at"], a: "for" },
+                { q: "I haven’t seen him ___ last week.", o: ["since", "for", "in", "at"], a: "since" },
+                { q: "She’s been away ___ Friday.", o: ["for", "since", "in", "at"], a: "since" },
+                { q: "It hasn’t rained ___ a few weeks.", o: ["since", "for", "in", "at"], a: "for" },
+                { q: "They’ve been married ___ ten years.", o: ["since", "for", "in", "at"], a: "for" },
+                { q: "I’ve lived here ___ my life.", o: ["for all", "since", "all", "during"], a: "all" },
+                { q: "I haven’t had a vacation ___ ten years.", o: ["since", "for", "in", "from"], a: "for" },
+                { q: "I haven’t had a vacation ___ ten years.", o: ["since", "for", "in", "on"], a: "in" },
+                { q: "How long have you had this car? — ___", o: ["About five years.", "Five years ago.", "In five years.", "Last year."], a: "About five years." },
+                { q: "When did you buy this car? — ___", o: ["About five years.", "Five years ago.", "For five years.", "Since 2019."], a: "Five years ago." },
+                { q: "How long have you been waiting? — ___", o: ["Only a few minutes.", "A few minutes ago.", "Last week.", "Since 8:00 ago."], a: "Only a few minutes." },
+                { q: "When did the class start? — ___", o: ["September.", "For September.", "Since September.", "In a long time."], a: "September." },
+                { q: "When did Anna arrive in New York? — ___", o: ["A long time.", "Last week.", "For a week.", "Since last week."], a: "Last week." },
+                { q: "How long have you known each other? — ___", o: ["A long time.", "Last week.", "In 2018.", "Yesterday."], a: "A long time." },
+                { q: "Have you eaten any fruit today? — No, I ___", o: ["didn’t", "haven’t", "don’t", "wasn’t"], a: "haven’t" },
+                { q: "I’m very hungry. I ___ much today.", o: ["haven’t eaten", "didn’t eat", "don’t eat", "wasn’t eating"], a: "haven’t eaten" },
+                { q: "Aaron and Emily ___ about ten minutes ago.", o: ["have arrived", "arrived", "have been arriving", "arrive"], a: "arrived" },
+                { q: "It’s nearly lunchtime, and I ___ Matt all morning.", o: ["haven’t seen", "didn’t see", "don’t see", "wasn’t seeing"], a: "haven’t seen" },
+                { q: "My grandfather ___ before I was born.", o: ["has died", "died", "has been dying", "dies"], a: "died" },
+                { q: "Michael ___ in a bank for 15 years.", o: ["worked", "has worked", "was working", "is working"], a: "worked" },
+                { q: "She ___ in Toronto all her life.", o: ["lived", "has lived", "is living", "was living"], a: "has lived" },
+                { q: "We use ___ with a point in time.", o: ["for", "since", "all", "ago"], a: "since" },
+                { q: "We use ___ with a period of time.", o: ["since", "for", "ago", "when"], a: "for" },
+                { q: "“last week” usually goes with ___", o: ["present perfect", "simple past", "future", "present continuous"], a: "simple past" },
+                { q: "“today” can often go with ___", o: ["present perfect", "only simple past", "only future", "past perfect only"], a: "present perfect" }
+            ],
+            medium: [
+                { q: "It’s been raining ___ lunchtime.", a: "since" },
+                { q: "Sarah has lived in Seattle ___ 2015.", a: "since" },
+                { q: "Dan has lived in Brazil ___ ten years.", a: "for" },
+                { q: "We’ve been sitting here ___ an hour.", a: "for" },
+                { q: "Kevin has been looking for a job ___ he left school.", a: "since" },
+                { q: "I haven’t been to a party ___ ages.", a: "for" },
+                { q: "I haven’t seen him ___ last week.", a: "since" },
+                { q: "She’s been away ___ Friday.", a: "since" },
+                { q: "It hasn’t rained ___ a few weeks.", a: "for" },
+                { q: "They’ve been married ___ ten years.", a: "for" },
+                { q: "I haven’t had a vacation ___ ten years.", a: "for" },
+                { q: "I haven’t had a vacation ___ ten years. (힌트: 부정문)", a: "in" },
+                { q: "I’ve lived here ___ my life.", a: "all" },
+                { q: "I ______ (not / be) to France.", a: "haven’t been" },
+                { q: "Aaron and Emily ______ (arrive) about ten minutes ago.", a: "arrived" },
+                { q: "I’m tired. I ______ (not / sleep) well last night.", a: "didn’t sleep" },
+                { q: "There ______ (be) a bus drivers’ strike last week.", a: "was" },
+                { q: "Michael ______ (work) in a bank for 15 years. Then he gave it up.", a: "worked" },
+                { q: "She ______ (live) in Toronto all her life.", a: "has lived" },
+                { q: "My grandfather ______ (die) before I was born.", a: "died" },
+                { q: "I ______ never ______ (meet) him.", a: "have met" },
+                { q: "It’s nearly lunchtime, and I ______ (not / see) Matt all morning.", a: "haven’t seen" },
+                { q: "______ you ______ (go) to the movies last night?", a: "Did go" },
+                { q: "It ______ (be) very warm here since we arrived.", a: "has been" },
+                { q: "It ______ (be) 95 degrees yesterday.", a: "was" },
+                { q: "How long ______ you ______ (live) there?", a: "have lived" },
+                { q: "Where ______ you ______ (live) before that?", a: "did live" },
+                { q: "How long ______ you ______ (live) in Chicago?", a: "did live" },
+                { q: "I ______ (not / eat) any fruit today.", a: "haven’t eaten" },
+                { q: "Emily ______ (earn) a lot of money this year.", a: "has earned" }
+            ],
+            high: [
+                { q: "나는 점심시간부터 비가 오는 중이라고 말하고 싶다.", a: ["It’s been raining since lunchtime.", "It has been raining since lunchtime."] },
+                { q: "사라는 2015년부터 시애틀에 살고 있다.", a: ["Sarah has lived in Seattle since 2015.", "Sarah's lived in Seattle since 2015."] },
+                { q: "댄은 10년 동안 브라질에 살고 있다.", a: ["Dan has lived in Brazil for ten years.", "Dan's lived in Brazil for ten years.", "Dan has lived in Brazil for 10 years."] },
+                { q: "우리는 한 시간 동안 여기 앉아 있다.", a: ["We’ve been sitting here for an hour.", "We have been sitting here for an hour.", "We've been sitting here for 1 hour."] },
+                { q: "케빈은 학교를 떠난 이후로 일자리를 찾고 있다.", a: ["Kevin has been looking for a job since he left school."] },
+                { q: "나는 오랫동안 파티에 간 적이 없다.", a: ["I haven’t been to a party for ages.", "I have not been to a party for ages."] },
+                { q: "나는 지난주부터 그를 보지 못했다.", a: ["I haven’t seen him since last week.", "I have not seen him since last week."] },
+                { q: "그녀는 금요일부터 떠나 있다.", a: ["She’s been away since Friday.", "She has been away since Friday."] },
+                { q: "몇 주 동안 비가 오지 않았다.", a: ["It hasn’t rained for a few weeks.", "It has not rained for a few weeks.", "It hasn't been raining for a few weeks."] },
+                { q: "그들은 10년 동안 결혼 생활을 해왔다.", a: ["They’ve been married for ten years.", "They have been married for ten years.", "They've been married for 10 years."] },
+                { q: "나는 10년 동안 휴가를 가지 못했다.", a: ["I haven’t had a vacation for ten years.", "I have not had a vacation for ten years.", "I haven't had a vacation for 10 years."] },
+                { q: "나는 10년째 휴가를 가지 못하고 있다.", a: ["I haven’t had a vacation in ten years.", "I have not had a vacation in ten years.", "I haven't had a vacation in 10 years."] },
+                { q: "나는 평생 여기 살아왔다.", a: ["I’ve lived here all my life.", "I have lived here all my life."] },
+                { q: "나는 프랑스에 가본 적이 없다.", a: ["I haven’t been to France.", "I have not been to France."] },
+                { q: "애런과 에밀리는 약 10분 전에 도착했다.", a: ["Aaron and Emily arrived about ten minutes ago.", "Aaron and Emily arrived about 10 minutes ago."] },
+                { q: "나는 어젯밤 잠을 잘 못 잤다.", a: ["I didn’t sleep well last night.", "I did not sleep well last night."] },
+                { q: "지난주에는 버스 기사 파업이 있었다.", a: ["There was a bus drivers’ strike last week.", "There was a bus drivers' strike last week."] },
+                { q: "마이클은 은행에서 15년 동안 일했다.", a: ["Michael worked in a bank for 15 years.", "Michael worked in a bank for fifteen years."] },
+                { q: "그녀는 평생 토론토에서 살아왔다.", a: ["She has lived in Toronto all her life.", "She's lived in Toronto all her life."] },
+                { q: "우리 할아버지는 내가 태어나기 전에 돌아가셨다.", a: ["My grandfather died before I was born."] },
+                { q: "나는 그를 한 번도 만난 적이 없다.", a: ["I have never met him.", "I've never met him."] },
+                { q: "거의 점심시간인데, 나는 아침 내내 맷을 못 봤다.", a: ["It’s nearly lunchtime, and I haven’t seen Matt all morning.", "It is nearly lunchtime, and I haven't seen Matt all morning."] },
+                { q: "너 어젯밤 영화 보러 갔니?", a: ["Did you go to the movies last night?"] },
+                { q: "우리가 도착한 이후로 여기 날씨는 계속 매우 따뜻했다.", a: ["It has been very warm here since we arrived.", "It's been very warm here since we arrived."] },
+                { q: "어제는 95도였다.", a: ["It was 95 degrees yesterday."] },
+                { q: "너는 거기 얼마나 오래 살았니?", a: ["How long have you lived there?"] },
+                { q: "그 전에는 어디에서 살았니?", a: ["Where did you live before that?"] },
+                { q: "시카고에서는 얼마나 오래 살았니?", a: ["How long did you live in Chicago?"] },
+                { q: "나는 오늘 과일을 하나도 먹지 않았다.", a: ["I haven’t eaten any fruit today.", "I have not eaten any fruit today."] },
+                { q: "에밀리는 올해 돈을 많이 벌었다.", a: ["Emily has earned a lot of money this year.", "Emily's earned a lot of money this year."] }
+            ]
+        };
+
+        const quizState = { active: false, level: null, list: [], cur: 0, score: 0 };
+
+        window.quizGame = {
+            start: function (level) {
+                quizState.level = level;
+                let badge = document.getElementById('quiz-level-badge');
+                if (level === 'low') { badge.innerText = 'LOW'; badge.className = 'px-4 py-1.5 rounded-full font-bold text-lg text-white bg-green-500'; }
+                else if (level === 'medium') { badge.innerText = 'MEDIUM'; badge.className = 'px-4 py-1.5 rounded-full font-bold text-lg text-white bg-blue-500'; }
+                else if (level === 'high') { badge.innerText = 'HIGH'; badge.className = 'px-4 py-1.5 rounded-full font-bold text-lg text-white bg-purple-500'; }
+                this.reroll();
+            },
+            reroll: function () {
+                let pool = [...quizData[quizState.level]];
+                let selected = [];
+                for (let i = 0; i < 10; i++) {
+                    let idx = Math.floor(Math.random() * pool.length);
+                    selected.push(pool.splice(idx, 1)[0]);
+                }
+                quizState.list = selected;
+                quizState.cur = 0;
+                quizState.score = 0;
+                document.getElementById('quiz-score-display').innerText = '0';
+
+                document.getElementById('quiz-view-home').classList.add('hidden');
+                document.getElementById('quiz-view-result').classList.add('hidden');
+                document.getElementById('quiz-view-question').classList.remove('hidden');
+                this.renderQuestion();
+            },
+            goHome: function () {
+                document.getElementById('quiz-view-question').classList.add('hidden');
+                document.getElementById('quiz-view-result').classList.add('hidden');
+                document.getElementById('quiz-view-home').classList.remove('hidden');
+            },
+            retry: function () {
+                this.reroll();
+            },
+            renderQuestion: function () {
+                document.getElementById('quiz-current-num').innerText = quizState.cur + 1;
+                let q = quizState.list[quizState.cur];
+                document.getElementById('quiz-question-text').innerText = q.q;
+
+                let area = document.getElementById('quiz-answer-area');
+                area.innerHTML = '';
+
+                let fbk = document.getElementById('quiz-feedback');
+                fbk.classList.add('hidden');
+                document.getElementById('quiz-next-btn-container').classList.add('hidden');
+
+                if (quizState.level === 'low') {
+                    q.o.forEach((opt, idx) => {
+                        let btn = document.createElement('button');
+                        btn.className = 'w-full text-left px-5 py-3 rounded-xl border-2 border-slate-200 hover:bg-slate-50 hover:border-blue-400 transition-all font-bold text-lg text-slate-700 bg-white shadow-sm';
+                        btn.innerText = String.fromCharCode(65 + idx) + ". " + opt;
+                        btn.onclick = () => this.submitAnswer(opt, btn);
+                        area.appendChild(btn);
+                    });
+                } else {
+                    let ipt = document.createElement('input');
+                    ipt.type = 'text';
+                    ipt.className = 'w-full px-5 py-3 rounded-xl border-2 border-slate-300 focus:border-blue-500 focus:outline-none text-xl font-bold bg-white text-slate-800 shadow-inner mb-2';
+                    ipt.placeholder = quizState.level === 'medium' ? '정답을 입력하세요' : '영작 문장을 입력하세요';
+                    ipt.onkeydown = (e) => { if (e.key === 'Enter') this.submitAnswer(ipt.value, ipt); };
+                    area.appendChild(ipt);
+
+                    let subBtn = document.createElement('button');
+                    subBtn.className = 'w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-xl shadow transition text-lg';
+                    subBtn.innerText = '제출하기';
+                    subBtn.onclick = () => this.submitAnswer(ipt.value, ipt);
+                    area.appendChild(subBtn);
+
+                    setTimeout(() => ipt.focus(), 100);
+                }
+            },
+            submitAnswer: function (userAns, el) {
+                if (document.getElementById('quiz-next-btn-container').classList.contains('hidden') === false) return; // Prevent double submit
+
+                let q = quizState.list[quizState.cur];
+                let correctStr = typeof q.a === 'string' ? [q.a] : q.a;
+
+                // 문자열 표준화: 소문자, 구두점 제거 (어포스트로피 제외), 공백 축소
+                let clean = (s) => String(s).toLowerCase().replace(/[^a-z0-9'\s]/gi, '').replace(/\s+/g, ' ').trim();
+
+                let userClean = clean(userAns);
+                let isCorrect = correctStr.some(a => clean(a) === userClean);
+
+                let fbk = document.getElementById('quiz-feedback');
+                fbk.className = 'mt-4 text-center px-5 py-3 rounded-xl font-bold text-xl transition-all duration-300 w-full max-w-3xl border-2 block shrink-0';
+
+                if (isCorrect) {
+                    quizState.score++;
+                    document.getElementById('quiz-score-display').innerText = quizState.score;
+                    fbk.classList.add('bg-green-100', 'text-green-800', 'border-green-300');
+                    fbk.innerHTML = '✨ 정답입니다! ✨';
+                    if (el && el.tagName === 'BUTTON' && quizState.level === 'low') el.classList.add('bg-green-50', '!border-green-500', '!text-green-800');
+                    if (el && el.tagName === 'INPUT') el.classList.add('bg-green-50', '!border-green-500');
+                } else {
+                    fbk.classList.add('bg-red-100', 'text-red-800', 'border-red-300');
+                    fbk.innerHTML = `❌ 오답입니다. <br><span class="text-xl font-normal mt-2 block text-red-700">정답: <strong>${correctStr[0]}</strong></span>`;
+                    if (el && el.tagName === 'BUTTON' && quizState.level === 'low') el.classList.add('bg-red-50', '!border-red-500');
+                    if (el && el.tagName === 'INPUT') el.classList.add('bg-red-50', '!border-red-500');
+                }
+
+                document.getElementById('quiz-next-btn-container').classList.remove('hidden');
+            },
+            nextQuestion: function () {
+                quizState.cur++;
+                if (quizState.cur >= 10) {
+                    this.showResult();
+                } else {
+                    this.renderQuestion();
+                }
+            },
+            showResult: function () {
+                document.getElementById('quiz-view-question').classList.add('hidden');
+                document.getElementById('quiz-view-result').classList.remove('hidden');
+
+                document.getElementById('quiz-final-score').innerHTML = quizState.score + '<span class="text-4xl text-slate-400">/10</span>';
+
+                let grade = '';
+                let gradeEl = document.getElementById('quiz-final-grade');
+                gradeEl.className = 'text-6xl font-black px-12 py-4 rounded-2xl mb-12 shadow-lg text-white';
+
+                if (quizState.score === 10) { grade = 'A+'; gradeEl.classList.add('bg-yellow-400'); }
+                else if (quizState.score === 9) { grade = 'A'; gradeEl.classList.add('bg-yellow-500'); }
+                else if (quizState.score === 8) { grade = 'B+'; gradeEl.classList.add('bg-blue-400'); }
+                else if (quizState.score === 7) { grade = 'B'; gradeEl.classList.add('bg-blue-500'); }
+                else if (quizState.score === 6) { grade = 'C'; gradeEl.classList.add('bg-slate-500'); }
+                else { grade = 'Review Needed'; gradeEl.classList.add('bg-red-500', '!text-4xl'); }
+
+                gradeEl.innerText = grade;
+            }
         };
 
         // Initialize first slide
