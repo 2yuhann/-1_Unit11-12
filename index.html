@@ -1,47 +1,881 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Present Perfect with Duration Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        /* 16:9 Fixed Aspect Ratio Container */
+        #slide-window {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(var(--scale, 1));
+            background: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            transform-origin: center center;
+        }
+
+        /* Slide Transition Logic */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* Presentation Styles */
+        h1, h2, h3, h4 { color: #0f172a; }
+        .text-accent { color: #2563eb; } /* blue-600 */
+        .bg-accent { background-color: #2563eb; }
+        .border-accent { border-color: #2563eb; }
+        
+        .slide-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 4px solid #e2e8f0;
+            position: relative;
+        }
+        .slide-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background-color: #2563eb;
+        }
+
+        .content-body {
+            flex-grow: 1;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: #334155;
+        }
+
+        /* Custom Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid #cbd5e1; padding: 1rem; text-align: left; }
+        th { background-color: #f8fafc; font-weight: 700; color: #1e293b; }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background-color: #eff6ff;
+            border-left: 6px solid #3b82f6;
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Code/Example Box */
+        .example-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation UI */
+        #nav-ui {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: white;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        #nav-ui button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 5px 10px;
+        }
+        #nav-ui button:hover { color: #60a5fa; }
+        #nav-ui button:disabled { color: #64748b; cursor: not-allowed; }
+        
+        .progress-bar-container {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 6px;
+            background-color: #e2e8f0;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        /* Answer Reveal Feature */
+        .answer-hidden { display: none; }
+        .answer-visible { display: inline-block; animation: popIn 0.3s ease-out; }
+        @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    </style>
 </head>
 <body>
-    <table border="1">
-        <caption><Caption></Caption>
-            <colgroup>
-                <col span="2" style="background: red;"/>
-                <col style="background: blue;"/>
-            </colgroup>
-            <thead style="background: green;">
-                <tr>
-                    <th>Table Header</th>
-                    <th>Table Header</th>
-                    <th>Table Header</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Table Data</td>
-                    <td>Table Data</td>
-                    <td>Table Data</td>
-                </tr>
-                <tr>
-                    <td>Table Data</td>
-                    <td>Table Data</td>
-                    <td>table Data</td>
-                </tr>
-                <tr>
-                    <td> Table Data</td>
-                    <td>Tabld Data</td>
-                    <td>Table Date</td>
-                </tr>
-            </tbody>
-            <tfoot style="background: yellow;">
-                <tr>
-                    <td>Table Data</td>
-                    <td>Table data</td>
-                    <td>Table Data</td>
-                </tr>
-            </tfoot>       
+
+    <!-- Main 16:9 Presentation Window -->
+    <div id="slide-window">
+
+        <!-- Slide 1: Title -->
+        <div class="slide active bg-white flex flex-col justify-center items-center text-center">
+            <div class="mb-4 text-blue-600 font-bold tracking-wider uppercase">Unit 11–12 Presentation</div>
+            <h1 class="text-6xl font-black mb-6 leading-tight text-slate-900">
+                Present Perfect with Duration:<br>
+                <span class="text-blue-600">How long, for, since, when</span>
+            </h1>
+            <p class="text-2xl text-slate-500 mb-12">How long have you (been) ... ? / for and since / When ... ? and How long ... ?</p>
+            
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-8 shadow-sm flex flex-col gap-2 text-lg w-96 mx-auto">
+                <div class="flex justify-between"><span class="font-bold text-slate-400">발표자</span> <span class="font-bold text-slate-800">이유한</span></div>
+                <div class="flex justify-between"><span class="font-bold text-slate-400">학번</span> <span class="font-bold text-slate-800">22학번</span></div>
+                <div class="flex justify-between"><span class="font-bold text-slate-400">과목명</span> <span class="font-bold text-slate-800">영어문법1</span></div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Project Overview -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Project Overview</h2>
+            <div class="content-body flex flex-col justify-center h-full">
+                <div class="grid grid-cols-4 gap-6 mb-12">
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 relative">
+                        <div class="absolute -top-5 left-6 bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-lg">1</div>
+                        <h3 class="font-bold text-xl mt-4 mb-2 text-blue-900">내용 숙지</h3>
+                        <p class="text-base text-slate-600">교재 내용 숙지 및<br>문제 해결</p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 relative">
+                        <div class="absolute -top-5 left-6 bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-lg">2</div>
+                        <h3 class="font-bold text-xl mt-4 mb-2 text-blue-900">기획</h3>
+                        <p class="text-base text-slate-600">5W1H 기반<br>프로젝트 기획</p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 relative">
+                        <div class="absolute -top-5 left-6 bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-lg">3</div>
+                        <h3 class="font-bold text-xl mt-4 mb-2 text-blue-900">개발</h3>
+                        <p class="text-base text-slate-600">AI Tool 기반<br>개발 (HTML/JS)</p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 relative">
+                        <div class="absolute -top-5 left-6 bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-lg">4</div>
+                        <h3 class="font-bold text-xl mt-4 mb-2 text-blue-900">검증</h3>
+                        <p class="text-base text-slate-600">비판적 검증<br>(정확성 및 효과)</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p class="font-bold mb-2 text-blue-800"><i class="fa-solid fa-lightbulb mr-2"></i> 한 줄 설명</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>교재 문법을 분석하고,</li>
+                        <li>학습자 친화적 퀴즈 시스템으로 확장한 뒤,</li>
+                        <li>AI를 활용해 HTML 기반 결과물을 제작하고,</li>
+                        <li>문법적 정확성과 학습 효과를 검증했다.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Grammar 1 -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Unit 11: How long have you (been) ... ?</h2>
+            <div class="content-body flex gap-8">
+                <div class="flex-1">
+                    <h3 class="font-bold text-2xl mb-4 text-blue-800"><i class="fa-solid fa-star text-yellow-400 mr-2"></i>핵심 개념</h3>
+                    <p class="mb-6 bg-slate-100 p-4 rounded-lg"><strong>present perfect</strong>는 <strong>과거에 시작해서 지금까지 계속되는 상태/행동</strong>을 말할 때 사용한다.</p>
+                    
+                    <h3 class="font-bold text-2xl mb-4 mt-8 text-blue-800">중요한 포인트</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i> <div>현재 상태를 단순 현재로 말할 수는 있음<br><span class="text-slate-500 text-lg">ex) They are married.</span></div></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i> <div>하지만 <strong>기간</strong>을 물을 때는<br><strong class="text-blue-600 text-lg">How long have they been married?</strong></div></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i> <div>기간을 포함해 말할 때도<br><strong class="text-blue-600 text-lg">They have been married for 20 years.</strong></div></li>
+                        <li class="flex items-start"><i class="fa-solid fa-xmark text-red-500 mt-1 mr-3"></i> <div><span class="text-red-500 font-bold">not:</span> They are married for 20 years.</div></li>
+                    </ul>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-2xl mb-4 text-slate-800">예시 (Examples)</h3>
+                    <div class="space-y-4">
+                        <div class="example-box">
+                            <p>He's been in the hospital since Monday.</p>
+                        </div>
+                        <div class="example-box">
+                            <p>We've known each other for a long time.</p>
+                        </div>
+                        <div class="example-box">
+                            <p>How long have they had their car?</p>
+                        </div>
+                        <div class="example-box">
+                            <p>She hasn't been waiting very long.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Grammar 2 -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Present Perfect: Simple vs Continuous</h2>
+            <div class="content-body grid grid-cols-2 gap-x-12 gap-y-8 h-full">
+                
+                <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
+                    <h3 class="font-bold text-xl mb-3 text-blue-800">1) Continuous가 자주 쓰이는 경우</h3>
+                    <p class="text-base text-slate-600 mb-3">특히 <strong>How long</strong>과 함께 자주 사용</p>
+                    <ul class="list-disc list-inside text-lg space-y-1">
+                        <li>I've been learning English since January.</li>
+                        <li>It's been raining all morning.</li>
+                        <li>Richard has been doing the same job for 20 years.</li>
+                        <li>How long have you been driving?</li>
+                    </ul>
+                </div>
+
+                <div class="bg-red-50/50 p-6 rounded-xl border border-red-100">
+                    <h3 class="font-bold text-xl mb-3 text-red-800">2) Continuous를 잘 안 쓰는 동사</h3>
+                    <p class="text-base text-slate-600 mb-3">상태동사: <strong>know, like, have</strong> 등</p>
+                    <ul class="list-disc list-inside text-lg space-y-1">
+                        <li>How long have you known Jane?</li>
+                        <li>I've had these shoes for ages.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50/50 p-6 rounded-xl border border-green-100">
+                    <h3 class="font-bold text-xl mb-3 text-green-800">3) 둘 다 가능한 경우</h3>
+                    <p class="text-base text-slate-600 mb-3"><strong>live, work</strong></p>
+                    <ul class="list-disc list-inside text-lg space-y-1">
+                        <li>Julia has been living / has lived here for a long time.</li>
+                        <li>How long have you been working / worked here?</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-xl mb-3 text-slate-800">4) 단순형만 쓰는 경우</h3>
+                    <p class="text-base text-slate-600 mb-3"><strong>always</strong>와 함께는 보통 simple</p>
+                    <ul class="list-disc list-inside text-lg space-y-1">
+                        <li>I've always lived in the country.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 5: Grammar 3 -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Unit 12: for and since</h2>
+            <div class="content-body flex gap-8 h-full items-center pb-12">
+                
+                <!-- FOR Box -->
+                <div class="flex-1 bg-white border-2 border-indigo-200 rounded-2xl p-8 shadow-sm h-full flex flex-col">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-3xl">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                        </div>
+                        <h3 class="font-black text-5xl text-indigo-600">for</h3>
+                    </div>
+                    <p class="text-2xl font-bold mb-4">기간 (duration)</p>
+                    
+                    <div class="bg-slate-50 p-4 rounded-lg font-mono text-lg mb-6 border border-slate-200">
+                        <div class="text-indigo-600 font-bold mb-2">Structure: for + 기간</div>
+                        • for two hours<br>
+                        • for six months<br>
+                        • for a long time
+                    </div>
+
+                    <h4 class="font-bold text-xl text-slate-400 mb-2">Examples:</h4>
+                    <ul class="space-y-3 text-xl">
+                        <li>We've been waiting <strong>for two hours</strong>.</li>
+                        <li>Emily has been working here <strong>for six months</strong>.</li>
+                    </ul>
+                </div>
+
+                <!-- SINCE Box -->
+                <div class="flex-1 bg-white border-2 border-teal-200 rounded-2xl p-8 shadow-sm h-full flex flex-col">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-3xl">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3 class="font-black text-5xl text-teal-600">since</h3>
+                    </div>
+                    <p class="text-2xl font-bold mb-4">시작 시점 (starting point)</p>
+                    
+                    <div class="bg-slate-50 p-4 rounded-lg font-mono text-lg mb-6 border border-slate-200">
+                        <div class="text-teal-600 font-bold mb-2">Structure: since + 시점</div>
+                        • since 8:00<br>
+                        • since Monday<br>
+                        • since April / 2009
+                    </div>
+
+                    <h4 class="font-bold text-xl text-slate-400 mb-2">Examples:</h4>
+                    <ul class="space-y-3 text-xl">
+                        <li>We've been waiting <strong>since 8:00</strong>.</li>
+                        <li>Emily has been working here <strong>since April</strong>.</li>
+                        <li>I haven't seen Tom <strong>since Monday</strong>.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 6: Grammar 4 -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">When ... ? vs How long ... ?</h2>
+            <div class="content-body flex flex-col gap-6">
+                
+                <div class="flex gap-6">
+                    <div class="w-1/3 bg-slate-800 text-white p-6 rounded-xl flex flex-col justify-center">
+                        <h3 class="text-3xl font-bold mb-2 text-blue-300">When ... ?</h3>
+                        <p class="text-lg opacity-80 mb-2"><strong>언제</strong> 시작/발생했는지 묻는다</p>
+                        <div class="inline-block bg-white/20 px-3 py-1 rounded text-sm font-bold w-max">→ 보통 past simple</div>
+                    </div>
+                    <div class="w-2/3 border border-slate-200 rounded-xl p-6 flex flex-col justify-center bg-slate-50 space-y-4 text-xl">
+                        <div>
+                            <span class="font-bold text-slate-400 mr-2">Q</span>
+                            <strong>When</strong> did it start raining?
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-400 mr-2">A</span>
+                            It started raining an hour ago / at 1:00.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="w-1/3 bg-blue-600 text-white p-6 rounded-xl flex flex-col justify-center">
+                        <h3 class="text-3xl font-bold mb-2 text-blue-100">How long ... ?</h3>
+                        <p class="text-lg opacity-80 mb-2"><strong>얼마 동안</strong> 지속되었는지 묻는다</p>
+                        <div class="inline-block bg-white/20 px-3 py-1 rounded text-sm font-bold w-max">→ 보통 present perfect</div>
+                    </div>
+                    <div class="w-2/3 border border-blue-200 rounded-xl p-6 flex flex-col justify-center bg-blue-50 space-y-4 text-xl">
+                        <div>
+                            <span class="font-bold text-blue-400 mr-2">Q</span>
+                            <strong>How long</strong> has it been raining?
+                        </div>
+                        <div>
+                            <span class="font-bold text-blue-400 mr-2">A</span>
+                            It's been raining for an hour / since 1:00.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 border-l-4 border-yellow-400 pl-6 py-2 bg-yellow-50 rounded-r-lg">
+                    <h4 class="font-bold text-slate-800 mb-2">또 다른 예시 비교</h4>
+                    <p><strong>When</strong> did Joe and Kate first meet? <br>→ They first met when they were in high school.</p>
+                    <div class="h-px bg-yellow-200 my-2"></div>
+                    <p><strong>How long</strong> have they known each other? <br>→ They've known each other for a long time / since high school.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 7: Core Rule Comparison -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Core Rule Comparison</h2>
+            <div class="content-body flex flex-col items-center justify-center h-full">
+                
+                <table class="w-full text-lg shadow-sm rounded-lg overflow-hidden border-hidden">
+                    <thead class="bg-slate-800 text-white">
+                        <tr>
+                            <th class="py-4 px-6 border-slate-700 w-1/4">기능</th>
+                            <th class="py-4 px-6 border-slate-700 w-1/4">질문/표현 형태</th>
+                            <th class="py-4 px-6 border-slate-700 w-1/6">시제</th>
+                            <th class="py-4 px-6 border-slate-700 w-1/3">예문</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-4 px-6 font-bold text-slate-700">현재까지의 지속 기간 묻기</td>
+                            <td class="py-4 px-6 text-blue-600 font-bold bg-blue-50/30">How long have you been ... ?</td>
+                            <td class="py-4 px-6">Present Perfect</td>
+                            <td class="py-4 px-6">How long have you been studying English?</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-4 px-6 font-bold text-slate-700">기간 표현</td>
+                            <td class="py-4 px-6 text-blue-600 font-bold bg-blue-50/30">for + 기간</td>
+                            <td class="py-4 px-6">Present Perfect</td>
+                            <td class="py-4 px-6">I've studied English <strong>for two years</strong>.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-4 px-6 font-bold text-slate-700">시작 시점 표현</td>
+                            <td class="py-4 px-6 text-blue-600 font-bold bg-blue-50/30">since + 시점</td>
+                            <td class="py-4 px-6">Present Perfect</td>
+                            <td class="py-4 px-6">I've studied English <strong>since 2024</strong>.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-4 px-6 font-bold text-slate-700">시작한 시점 묻기</td>
+                            <td class="py-4 px-6 text-red-600 font-bold bg-red-50/30">When did ... start / happen?</td>
+                            <td class="py-4 px-6">Past Simple</td>
+                            <td class="py-4 px-6">When did you start studying English?</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-12 bg-slate-800 text-white text-2xl font-bold py-6 px-10 rounded-full shadow-lg text-center transform hover:scale-105 transition-transform cursor-default">
+                    💡 <span class="text-red-400">When</span>은 시작 시점, <span class="text-blue-400">How long</span>은 지속 기간에 초점을 둔다.
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 8: Creative Extension -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Creative Extension: AI Grammar Quiz Game</h2>
+            <div class="content-body flex gap-8">
+                
+                <div class="flex-1 flex flex-col pr-8 border-r border-slate-200">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4"><i class="fa-solid fa-bullseye mr-2"></i>기획 의도</h3>
+                    <p class="mb-6 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        교재 문법을 단순 설명에 그치지 않고, <strong>학습자가 직접 문제를 풀며 개념 차이를 체감하도록</strong> 확장했습니다.<br><br>
+                        영어문법1 강의를 수강하는 학생들이 시험 직전에도 <strong>핸드폰으로 간단하게 퀴즈를 풀면서</strong> 교재 예문을 자연스럽게 외울 수 있도록 하는 것이 목표입니다. (책을 펴서 보는 비효율을 개선)
+                    </p>
+
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4 mt-2"><i class="fa-solid fa-gamepad mr-2"></i>게임 핵심 기능</h3>
+                    <ul class="space-y-3">
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 난이도 선택: <strong>하 / 중 / 상</strong></li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 교재 기반 예문 약 <strong>30개 탑재</strong></li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> <strong>리롤 버튼</strong> 클릭 시 랜덤 10문제 출제</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 객관식 또는 빈칸형 문제 제공</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 제출 후 점수와 학점 출력</li>
+                    </ul>
+                </div>
+
+                <div class="w-1/3 flex flex-col justify-center">
+                    <div class="bg-slate-800 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-blue-600 text-xs font-bold px-3 py-1 rounded-bl-lg">Result System</div>
+                        <h4 class="text-xl font-bold text-center mb-6 border-b border-slate-600 pb-4">결과 체계 예시</h4>
+                        
+                        <div class="space-y-3 font-mono text-lg flex flex-col items-center">
+                            <div class="flex w-full justify-between items-center"><span class="text-slate-400">10개 정답</span> <strong class="text-3xl text-yellow-400">A+</strong></div>
+                            <div class="flex w-full justify-between items-center"><span class="text-slate-400">9개 정답</span> <strong class="text-2xl text-yellow-300">A</strong></div>
+                            <div class="flex w-full justify-between items-center"><span class="text-slate-400">8개 정답</span> <strong class="text-xl text-blue-300">B+</strong></div>
+                            <div class="flex w-full justify-between items-center"><span class="text-slate-400">7개 정답</span> <strong class="text-lg text-blue-200">B</strong></div>
+                            <div class="flex w-full justify-between items-center"><span class="text-slate-400">6개 정답</span> <strong class="text-base text-slate-300">C</strong></div>
+                            <div class="w-full h-px bg-slate-600 my-2"></div>
+                            <div class="flex w-full justify-between items-center"><span class="text-slate-400">5개 이하</span> <strong class="text-red-400 bg-red-400/20 px-2 py-1 rounded">Review Needed</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 9: Why This Is Creative -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Why This Is Creative</h2>
+            <div class="content-body flex flex-col justify-center h-full">
+                
+                <div class="grid grid-cols-2 gap-8 mb-10">
+                    <div class="bg-white border-2 border-slate-100 p-6 rounded-xl shadow-sm hover:shadow-md transition flex gap-4">
+                        <div class="text-4xl text-blue-500 mt-1"><i class="fa-solid fa-rotate"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">1. 정적 요약 → 동적 퀴즈</h3>
+                            <p class="text-slate-600 text-base">교재 문장을 눈으로만 읽는 정적 요약에서 벗어나, 퀴즈 형태의 동적 경험으로 변형했습니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white border-2 border-slate-100 p-6 rounded-xl shadow-sm hover:shadow-md transition flex gap-4">
+                        <div class="text-4xl text-green-500 mt-1"><i class="fa-solid fa-bolt"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">2. 즉각적인 피드백 사이클</h3>
+                            <p class="text-slate-600 text-base"><strong>문법 설명 → 즉시 적용 → 결과 피드백</strong>의 완벽한 구조를 HTML/JS로 구현했습니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-2 border-slate-100 p-6 rounded-xl shadow-sm hover:shadow-md transition flex gap-4">
+                        <div class="text-4xl text-purple-500 mt-1"><i class="fa-solid fa-layer-group"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">3. 학습자 맞춤형 난이도</h3>
+                            <p class="text-slate-600 text-base">난이도별 구성을 통해, 자신의 학습 수준에 맞춰 점진적으로 실력을 키울 수 있습니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-2 border-slate-100 p-6 rounded-xl shadow-sm hover:shadow-md transition flex gap-4">
+                        <div class="text-4xl text-orange-500 mt-1"><i class="fa-solid fa-code-compare"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">4. 미세한 문법 차이 구별</h3>
+                            <p class="text-slate-600 text-base">단순 번역이 아닌 <strong>for/since, when/how long, simple/continuous</strong>의 차이를 구별하게 설계했습니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 text-center p-6 rounded-xl text-white">
+                    <p class="text-2xl font-light italic">"This project transforms textbook grammar into an <strong class="text-blue-400 font-bold">interactive learning experience</strong>."</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 10: 5W1H -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Project Planning with 5W1H</h2>
+            <div class="content-body grid grid-cols-3 gap-6 h-full items-center pb-8">
+                
+                <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl h-48 flex flex-col justify-center">
+                    <h3 class="text-blue-600 font-black text-2xl mb-2 uppercase tracking-wide">Who</h3>
+                    <p class="text-slate-700 text-lg">영어문법1 수업을 수강중인 경기대학교 학생들.</p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl h-48 flex flex-col justify-center">
+                    <h3 class="text-blue-600 font-black text-2xl mb-2 uppercase tracking-wide">What</h3>
+                    <p class="text-slate-700 text-lg">Unit 11–12 문법을 학습할 수 있는 HTML 기반 AI 퀴즈 및 발표 자료</p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl h-48 flex flex-col justify-center">
+                    <h3 class="text-blue-600 font-black text-2xl mb-2 uppercase tracking-wide">Why</h3>
+                    <p class="text-slate-700 text-lg">시험 대비 시 핸드폰으로 퀴즈를 풀며 간단하게 교재 예문을 외울 수 있도록.</p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl h-48 flex flex-col justify-center">
+                    <h3 class="text-blue-600 font-black text-2xl mb-2 uppercase tracking-wide">Where</h3>
+                    <p class="text-slate-700 text-lg">웹 브라우저에서 바로 실행되는 HTML 발표 및 퀴즈 시스템</p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 p-6 rounded-xl h-48 flex flex-col justify-center">
+                    <h3 class="text-blue-600 font-black text-2xl mb-2 uppercase tracking-wide">When</h3>
+                    <p class="text-slate-700 text-lg">수업 발표 및 개인적인 시험 대비 복습용</p>
+                </div>
+
+                <div class="bg-blue-600 text-white p-6 rounded-xl h-48 flex flex-col justify-center shadow-lg">
+                    <h3 class="text-blue-200 font-black text-2xl mb-2 uppercase tracking-wide">How</h3>
+                    <p class="text-white text-lg leading-snug">AI tool을 활용해 아이디어를 얻고 이를 HTML/CSS/JavaScript로 직접 구현</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 11: Development Process Log -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Development Process Log</h2>
+            <div class="content-body flex gap-10">
+                
+                <div class="w-1/2 flex flex-col justify-between">
+                    <div class="relative pl-8 border-l-2 border-blue-200 space-y-6">
+                        
+                        <div class="relative">
+                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-xl text-slate-800">Step 1. Textbook Analysis</h4>
+                            <p class="text-base text-slate-600 mt-1">Unit 11–12 핵심 문법 포인트 정리 및 예문 유형 분류 (How long, for/since 등)</p>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-xl text-slate-800">Step 2. Prompt Design</h4>
+                            <p class="text-base text-slate-600 mt-1">AI에게 교재 요약, 난이도 분류, 퀴즈 형식 아이디어 및 구조 설계 요청</p>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-xl text-slate-800">Step 3. Prototype Development</h4>
+                            <p class="text-base text-slate-600 mt-1">HTML 슬라이드 구조, 방향키 이동, JS 랜덤 출제 및 점수 계산 구현</p>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-xl text-slate-800">Step 4. Revision</h4>
+                            <p class="text-base text-slate-600 mt-1">문법 오류 수정, UI 정리, 예문 중복 제거 및 결과 기준 최종 조정</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="w-1/2 bg-slate-900 rounded-xl p-6 shadow-lg text-slate-300 font-mono text-sm flex flex-col gap-4 overflow-y-auto">
+                    <div class="text-blue-400 font-bold border-b border-slate-700 pb-2 mb-2">프롬프트 예시 (Prompts used)</div>
+                    
+                    <div>
+                        <span class="text-green-400">Prompt 1:</span>
+                        <p class="mt-1 bg-slate-800 p-3 rounded text-slate-200">“Summarize Unit 11–12 grammar points focusing on ‘How long have you (been) ... ?’, ‘for and since’, and ‘When ... ? vs How long ... ?’ in a simple learner-friendly way.”</p>
+                    </div>
+                    
+                    <div>
+                        <span class="text-green-400">Prompt 2:</span>
+                        <p class="mt-1 bg-slate-800 p-3 rounded text-slate-200">“Create grammar quiz items based on textbook examples. Group them into easy, medium, and hard levels.”</p>
+                    </div>
+
+                    <div>
+                        <span class="text-green-400">Prompt 3:</span>
+                        <p class="mt-1 bg-slate-800 p-3 rounded text-slate-200">“Generate an HTML presentation with keyboard navigation and an interactive grammar quiz game using JavaScript.”</p>
+                    </div>
+                    
+                    <div>
+                        <span class="text-green-400">Prompt 4:</span>
+                        <p class="mt-1 bg-slate-800 p-3 rounded text-slate-200">“Check whether the following grammar explanations are accurate and identify any oversimplified or misleading parts.”</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 12: Critical Verification -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Critical Verification</h2>
+            <div class="content-body flex flex-col gap-8 h-full">
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-clipboard-check text-green-600"></i> 검증 기준</h3>
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-3 pl-8 text-lg text-slate-700 list-decimal">
+                        <div class="flex items-center gap-2"><span class="bg-slate-200 text-slate-600 w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold">1</span> 교재와 일치하는가?</div>
+                        <div class="flex items-center gap-2"><span class="bg-slate-200 text-slate-600 w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold">2</span> 상태동사 예외가 정확히 설명되었는가?</div>
+                        <div class="flex items-center gap-2"><span class="bg-slate-200 text-slate-600 w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold">3</span> When과 How long의 시제 차이가 명확한가?</div>
+                        <div class="flex items-center gap-2"><span class="bg-slate-200 text-slate-600 w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold">4</span> for와 since가 혼동 없이 제시되었는가?</div>
+                        <div class="flex items-center gap-2 col-span-2"><span class="bg-slate-200 text-slate-600 w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold">5</span> AI가 만든 문제에 문법적 오류가 없는가?</div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 border border-red-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-magnifying-glass"></i> 비판적으로 본 부분 (AI의 한계 보완)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700 text-lg">
+                        <li>AI는 sometimes <strong>present perfect simple</strong>과 <strong>continuous</strong>의 차이를 지나치게 단순화할 수 있음</li>
+                        <li><strong>know, like, have</strong> 같은 상태동사는 continuous로 잘 쓰지 않는다는 예외를 반드시 확인해야 함</li>
+                        <li>"How long"이 나온다고 무조건 continuous를 쓰는 것은 아님</li>
+                        <li>"always"와 함께는 simple 형태가 자연스럽다는 점도 검토 필요</li>
+                    </ul>
+                </div>
+
+                <div class="mt-auto bg-blue-600 text-white p-5 rounded-lg text-center font-medium text-xl shadow-md">
+                    "AI was useful for speed and idea generation, but textbook-based verification was necessary for grammatical accuracy."
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 13: Exam Questions -->
+        <div class="slide bg-white">
+            <h2 class="slide-title">Exam Questions <span class="text-base font-normal text-slate-400 ml-4">(버튼을 눌러 정답 확인)</span></h2>
+            <div class="content-body grid grid-cols-3 gap-6 h-full pb-8">
+                
+                <!-- Q1 -->
+                <div class="bg-white border-2 border-slate-200 rounded-xl p-6 flex flex-col shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 bg-slate-800 text-white px-4 py-1 rounded-br-lg font-bold">Q1</div>
+                    <div class="mt-6 mb-4 font-bold text-slate-600 text-sm">Choose the correct answer.</div>
+                    <p class="text-xl font-bold text-blue-800 mb-6 bg-blue-50 p-4 rounded-lg text-center">( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) have you known each other?</p>
+                    <ul class="space-y-2 mb-auto text-lg text-slate-700 pl-4">
+                        <li>a) When</li>
+                        <li>b) How long</li>
+                        <li>c) Since</li>
+                        <li>d) For</li>
+                    </ul>
+                    <button class="answer-btn w-full mt-6 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 rounded-lg transition" onclick="toggleAnswer('ans1')">정답 확인</button>
+                    <div id="ans1" class="answer-hidden absolute inset-0 bg-green-500 text-white flex flex-col items-center justify-center">
+                        <div class="text-6xl font-black mb-2">b</div>
+                        <div class="text-xl">How long</div>
+                        <button class="mt-6 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm" onclick="toggleAnswer('ans1')">닫기</button>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="bg-white border-2 border-slate-200 rounded-xl p-6 flex flex-col shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 bg-slate-800 text-white px-4 py-1 rounded-br-lg font-bold">Q2</div>
+                    <div class="mt-6 mb-4 font-bold text-slate-600 text-sm">Choose the correct expression.</div>
+                    <p class="text-xl font-bold text-blue-800 mb-6 bg-blue-50 p-4 rounded-lg text-center">I have lived here <span class="border-b-2 border-blue-800 w-12 inline-block"></span> 2021.</p>
+                    <ul class="space-y-2 mb-auto text-lg text-slate-700 pl-4">
+                        <li>a) for</li>
+                        <li>b) since</li>
+                        <li>c) during</li>
+                        <li>d) from</li>
+                    </ul>
+                    <button class="answer-btn w-full mt-6 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 rounded-lg transition" onclick="toggleAnswer('ans2')">정답 확인</button>
+                    <div id="ans2" class="answer-hidden absolute inset-0 bg-green-500 text-white flex flex-col items-center justify-center">
+                        <div class="text-6xl font-black mb-2">b</div>
+                        <div class="text-xl">since</div>
+                        <button class="mt-6 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm" onclick="toggleAnswer('ans2')">닫기</button>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="bg-white border-2 border-slate-200 rounded-xl p-6 flex flex-col shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 bg-slate-800 text-white px-4 py-1 rounded-br-lg font-bold">Q3</div>
+                    <div class="mt-6 mb-4 font-bold text-slate-600 text-sm">What is the correct question?</div>
+                    <div class="mb-6 bg-blue-50 p-4 rounded-lg text-center">
+                        <p class="text-sm text-slate-500 mb-1">정답으로 원하는 정보:</p>
+                        <p class="text-lg font-bold text-blue-800">It started raining at 3:00.</p>
+                    </div>
+                    <ul class="space-y-2 mb-auto text-[1.05rem] text-slate-700 pl-4">
+                        <li>a) How long has it been raining?</li>
+                        <li>b) When did it start raining?</li>
+                        <li>c) How long did it rain?</li>
+                        <li>d) Since when has it raining?</li>
+                    </ul>
+                    <button class="answer-btn w-full mt-6 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 rounded-lg transition" onclick="toggleAnswer('ans3')">정답 확인</button>
+                    <div id="ans3" class="answer-hidden absolute inset-0 bg-green-500 text-white flex flex-col items-center justify-center">
+                        <div class="text-6xl font-black mb-2">b</div>
+                        <div class="text-xl">When did it start raining?</div>
+                        <button class="mt-6 px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm" onclick="toggleAnswer('ans3')">닫기</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Slide 14: Conclusion -->
+        <div class="slide bg-slate-900 text-white">
+            <h2 class="slide-title !border-slate-700 !text-white after:bg-blue-500">Conclusion</h2>
+            <div class="content-body flex flex-col justify-center h-full">
+                
+                <h3 class="text-2xl font-bold text-blue-400 mb-6">핵심 정리 (Summary)</h3>
+                
+                <ul class="space-y-5 text-xl text-slate-200 mb-12">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-blue-500 mt-1.5 mr-4 text-lg"></i>
+                        <span><strong class="text-white bg-blue-600/30 px-2 py-0.5 rounded">How long</strong>은 현재까지의 지속 기간을 묻는다.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-blue-500 mt-1.5 mr-4 text-lg"></i>
+                        <span><strong class="text-white bg-blue-600/30 px-2 py-0.5 rounded">for</strong>는 기간, <strong class="text-white bg-blue-600/30 px-2 py-0.5 rounded">since</strong>는 시작 시점이다.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-blue-500 mt-1.5 mr-4 text-lg"></i>
+                        <span><strong class="text-white bg-blue-600/30 px-2 py-0.5 rounded">When</strong>은 시작 시점을 묻고, <strong class="text-white bg-blue-600/30 px-2 py-0.5 rounded">How long</strong>은 지속 시간을 묻는다.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-blue-500 mt-1.5 mr-4 text-lg"></i>
+                        <span>Present perfect simple과 continuous는 문맥에 따라 구별해야 한다.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-star text-yellow-400 mt-1.5 mr-4 text-lg"></i>
+                        <span class="text-white font-medium">AI를 활용하면 문법 학습을 더 상호작용적으로 확장할 수 있다.</span>
+                    </li>
+                </ul>
+
+                <div class="mt-auto border-l-4 border-blue-500 pl-6 py-2">
+                    <p class="text-2xl font-light italic text-slate-300">
+                        "This project showed that grammar learning can be transformed from explanation into interaction through AI-assisted development."
+                    </p>
+                </div>
+                
+                <div class="absolute bottom-16 right-16 text-slate-600 font-bold text-4xl opacity-50">
+                    Thank You
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <!-- Navigation UI -->
+    <div id="nav-ui">
+        <button id="prevBtn" title="Previous Slide (Left Arrow)"><i class="fa-solid fa-chevron-left"></i></button>
+        <span id="slide-counter" class="font-mono font-bold text-lg w-16 text-center">1 / 14</span>
+        <button id="nextBtn" title="Next Slide (Right Arrow/Space)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        // Scaling Logic to maintain 16:9 ratio
+        function resizePresentation() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            // 1280x720 is the base resolution. Add a small margin (0.95)
+            const scale = Math.min(windowWidth / 1280, windowHeight / 720) * 0.95;
+            document.documentElement.style.setProperty('--scale', scale);
+        }
+
+        window.addEventListener('resize', resizePresentation);
+        resizePresentation();
+
+        // Slide Navigation Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const counter = document.getElementById('slide-counter');
+        const progressBar = document.getElementById('progress-bar');
+
+        function updateSlide() {
+            // Remove active class from all
+            slides.forEach(slide => slide.classList.remove('active'));
+            // Add active class to current
+            slides[currentSlide].classList.add('active');
+            
+            // Update UI
+            counter.innerText = `${currentSlide + 1} / ${totalSlides}`;
+            progressBar.style.width = `${((currentSlide) / (totalSlides - 1)) * 100}%`;
+            
+            // Disable buttons at ends
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Answer Toggle Logic for Slide 13
+        window.toggleAnswer = function(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('answer-hidden')) {
+                el.classList.remove('answer-hidden');
+                el.classList.add('answer-visible');
+            } else {
+                el.classList.remove('answer-visible');
+                el.classList.add('answer-hidden');
+            }
+        };
+
+        // Initialize first slide
+        updateSlide();
+    </script>
 </body>
 </html>
+```
