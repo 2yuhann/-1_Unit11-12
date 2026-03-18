@@ -827,11 +827,10 @@
 
                     <div
                         class="bg-white border-2 border-slate-100 p-6 rounded-xl shadow-sm hover:shadow-md transition flex gap-4">
-                        <div class="text-4xl text-orange-500 mt-1"><i class="fa-solid fa-code-compare"></i></div>
+                        <div class="text-4xl text-orange-500 mt-1"><i class="fa-solid fa-clock"></i></div>
                         <div>
-                            <h3 class="font-bold text-xl mb-2">4. 미세한 문법 차이 구별</h3>
-                            <p class="text-slate-600 text-base">단순 번역이 아닌 <strong>for/since, when/how long,
-                                    simple/continuous</strong>의 차이를 구별하게 설계했습니다.</p>
+                            <h3 class="font-bold text-xl mb-2">4. 효율적 학습 가능</h3>
+                            <p class="text-slate-600 text-base">시험 대비 할 때 언제 어디서든 편하게 교재 예문을 반복 암기할 수 있습니다.</p>
                         </div>
                     </div>
                 </div>
@@ -876,7 +875,7 @@
 
                 <div class="bg-blue-600 text-white p-6 rounded-xl h-48 flex flex-col justify-center shadow-lg">
                     <h3 class="text-blue-200 font-black text-2xl mb-2 uppercase tracking-wide">How</h3>
-                    <p class="text-white text-lg leading-snug">AI tool을 활용해 아이디어를 얻고 이를 HTML/CSS/JavaScript로 직접 구현</p>
+                    <p class="text-white text-lg leading-snug">AI tool을 활용해 아이디어를 얻고 이를 HTML/CSS/JavaScript로 구현</p>
                 </div>
 
             </div>
@@ -930,90 +929,80 @@
         </div>
 
         <!-- Slide 11: Development Process Log -->
-        <div class="slide bg-white">
-            <h2 class="slide-title">Development Process Log</h2>
-            <div class="content-body flex gap-10">
+        <div class="slide bg-white cursor-pointer group" onclick="nextProcessImage(event)">
+            <h2 class="slide-title">Development Process Log <span
+                    class="text-sm font-normal text-slate-500 ml-4 group-hover:text-blue-600 transition-colors">(화면을
+                    클릭하여 과정 이미지 보기)</span></h2>
+            <div class="content-body flex flex-col items-center justify-center pb-8 h-full">
 
-                <div class="w-1/2 flex flex-col">
-                    <div class="mb-5 bg-slate-100 p-4 rounded-xl border border-slate-200">
-                        <strong class="text-blue-800 font-bold"><i class="fa-solid fa-wrench mr-2"></i>사용한 AI
+                <div class="w-full max-w-5xl flex flex-col pt-4">
+                    <div
+                        class="mb-6 bg-slate-100 p-4 rounded-xl border border-slate-200 text-center shadow-sm hover:shadow-md transition">
+                        <strong class="text-blue-800 font-black text-xl"><i class="fa-solid fa-wrench mr-2"></i>사용한 AI
                             Tool:</strong>
-                        <span class="text-slate-700 ml-2 font-medium">Chat-gpt, Gemini-Canvas, Antigravity</span>
+                        <span class="text-slate-700 ml-3 font-bold text-xl">Chat-gpt, Gemini-Canvas, Antigravity</span>
                     </div>
 
-                    <div class="relative pl-8 border-l-2 border-blue-200 space-y-4 flex-grow">
+                    <div class="relative pl-10 border-l-4 border-blue-200 space-y-6 flex-grow ml-10">
 
                         <div class="relative">
-                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
+                            <div
+                                class="absolute -left-[50px] top-1 bg-blue-500 w-5 h-5 rounded-full border-4 border-white shadow">
                             </div>
-                            <h4 class="font-bold text-lg text-slate-800">Step 1. Textbook Analysis</h4>
-                            <p class="text-sm text-slate-600 mt-1">Unit 11–12 핵심 문법 포인트 정리 및 예문 유형 분류 (How long,
+                            <h4 class="font-black text-xl text-slate-800 tracking-tight">Step 1. Textbook Analysis</h4>
+                            <p class="text-base text-slate-600 mt-1">Unit 11–12 핵심 문법 포인트 정리 및 예문 유형 분류 (How long,
                                 for/since 등)</p>
                         </div>
 
                         <div class="relative">
-                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
+                            <div
+                                class="absolute -left-[50px] top-1 bg-blue-500 w-5 h-5 rounded-full border-4 border-white shadow">
                             </div>
-                            <h4 class="font-bold text-lg text-slate-800">Step 2. 내용 정리 및 기획</h4>
-                            <p class="text-sm text-slate-600 mt-1">Chap-gpt한테 교재 내용 정리, 슬라이드 구성 요청, 교재 예문 리스트 요청</p>
+                            <h4 class="font-black text-xl text-slate-800 tracking-tight">Step 2. 내용 정리 및 기획</h4>
+                            <p class="text-base text-slate-600 mt-1">Chap-gpt한테 교재 내용 정리, 슬라이드 구성 요청, 교재 예문 리스트 요청</p>
                         </div>
 
                         <div class="relative">
-                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
+                            <div
+                                class="absolute -left-[50px] top-1 bg-blue-500 w-5 h-5 rounded-full border-4 border-white shadow">
                             </div>
-                            <h4 class="font-bold text-lg text-slate-800">Step 3. HTML 뼈대 구축</h4>
-                            <p class="text-sm text-slate-600 mt-1">Gemini-Canvas한테 ppt제작 프롬프트 입력 -> HTML 코드로 변경</p>
+                            <h4 class="font-black text-xl text-slate-800 tracking-tight">Step 3. HTML 뼈대 구축</h4>
+                            <p class="text-base text-slate-600 mt-1">Gemini-Canvas한테 ppt제작 프롬프트 입력 -> HTML 코드로 변경</p>
                         </div>
 
                         <div class="relative">
-                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
+                            <div
+                                class="absolute -left-[50px] top-1 bg-blue-500 w-5 h-5 rounded-full border-4 border-white shadow">
                             </div>
-                            <h4 class="font-bold text-lg text-slate-800">Step 4. 코드 고도화</h4>
-                            <p class="text-sm text-slate-600 mt-1">Antigravity에 파일 불러오기 -> HTML 슬라이드 구조 정리, 방향키 이동, JS
+                            <h4 class="font-black text-xl text-slate-800 tracking-tight">Step 4. 코드 고도화</h4>
+                            <p class="text-base text-slate-600 mt-1">Antigravity에 파일 불러오기 -> HTML 슬라이드 구조 정리, 방향키 이동, JS
                                 랜덤 출제 및 점수 계산 구현</p>
                         </div>
 
                         <div class="relative">
-                            <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-white">
+                            <div
+                                class="absolute -left-[50px] top-1 bg-blue-500 w-5 h-5 rounded-full border-4 border-white shadow">
                             </div>
-                            <h4 class="font-bold text-lg text-slate-800">Step 5. 최종 조정</h4>
-                            <p class="text-sm text-slate-600 mt-1">문법 오류 점검, UI 정리 등 최종 자가 조정 및 완성</p>
+                            <h4 class="font-black text-xl text-slate-800 tracking-tight">Step 5. 최종 조정</h4>
+                            <p class="text-base text-slate-600 mt-1">문법 오류 점검, UI 정리 등 최종 자가 조정 및 완성</p>
                         </div>
 
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Image Overlay Container -->
+            <div id="process-image-overlay"
+                class="hidden absolute inset-0 bg-slate-900/90 z-50 flex flex-col items-center justify-center p-8 transition-all duration-300 backdrop-blur-sm">
+                <img id="process-image-view"
+                    class="max-w-full max-h-[82vh] object-contain shadow-2xl rounded-xl border border-slate-700" src=""
+                    alt="Process step image">
                 <div
-                    class="w-1/2 bg-slate-900 rounded-xl p-6 shadow-lg text-slate-300 font-mono text-sm flex flex-col gap-4 overflow-y-auto">
-                    <div class="text-blue-400 font-bold border-b border-slate-700 pb-2 mb-2">프롬프트 예시 (Prompts used)
-                    </div>
-
-                    <div>
-                        <span class="text-green-400">Prompt 1:</span>
-                        <p class="mt-1 bg-slate-800 p-3 rounded text-slate-200">“Summarize Unit 11–12 grammar points
-                            focusing on ‘How long have you (been) ... ?’, ‘for and since’, and ‘When ... ? vs How long
-                            ... ?’ in a simple learner-friendly way.”</p>
-                    </div>
-
-                    <div>
-                        <span class="text-green-400">Prompt 2:</span>
-                        <p class="mt-1 bg-slate-800 p-3 rounded text-slate-200">“Create grammar quiz items based on
-                            textbook examples. Group them into easy, medium, and hard levels.”</p>
-                    </div>
-
-                    <div>
-                        <span class="text-green-400">Prompt 3:</span>
-                        <p class="mt-1 bg-slate-800 p-3 rounded text-slate-200">“Generate an HTML presentation with
-                            keyboard navigation and an interactive grammar quiz game using JavaScript.”</p>
-                    </div>
-
-                    <div>
-                        <span class="text-green-400">Prompt 4:</span>
-                        <p class="mt-1 bg-slate-800 p-3 rounded text-slate-200">“Check whether the following grammar
-                            explanations are accurate and identify any oversimplified or misleading parts.”</p>
-                    </div>
+                    class="mt-6 bg-slate-800 px-8 py-3 rounded-2xl text-white text-2xl font-bold shadow-lg flex items-center justify-center gap-4">
+                    <span>이미지 <span id="process-image-counter" class="text-yellow-400">1</span> / 8</span>
+                    <span class="text-base font-normal text-slate-400 ml-4">(클릭하여 다음 보기)</span>
                 </div>
-
             </div>
         </div>
 
@@ -1585,6 +1574,28 @@
                 else { grade = 'Review Needed'; gradeEl.classList.add('bg-red-500', '!text-4xl'); }
 
                 gradeEl.innerText = grade;
+            }
+        };
+
+        // Process Slide Images Logic (Slide 11 / 13)
+        let processImageIndex = 0;
+        const processImagesList = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '6-1.png', '7.png'];
+        const maxProcessImages = processImagesList.length;
+
+        window.nextProcessImage = function (e) {
+            processImageIndex++;
+            const overlay = document.getElementById('process-image-overlay');
+            const imgView = document.getElementById('process-image-view');
+            const counter = document.getElementById('process-image-counter');
+
+            if (processImageIndex > maxProcessImages) {
+                // 마지막 클릭 시 숨김 및 초기화
+                overlay.classList.add('hidden');
+                processImageIndex = 0;
+            } else {
+                imgView.src = 'images/' + processImagesList[processImageIndex - 1];
+                counter.innerText = processImageIndex;
+                overlay.classList.remove('hidden');
             }
         };
 
