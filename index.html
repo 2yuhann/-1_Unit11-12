@@ -380,8 +380,8 @@
                     <h3 class="font-bold text-xl mb-3 text-green-800">3) 둘 다 가능한 경우</h3>
                     <p class="text-base text-slate-600 mb-3"><strong>live, work</strong></p>
                     <ul class="list-disc list-inside text-lg space-y-1">
-                        <li>Julia has been living / has lived here for a long time.</li>
-                        <li>How long have you been working / worked here?</li>
+                        <li>Julia (has been living / has lived) here for a long time.</li>
+                        <li>How long have you (been working / worked) here?</li>
                     </ul>
                 </div>
 
@@ -1085,28 +1085,35 @@
                     <div class="absolute top-0 left-0 bg-slate-800 text-white px-4 py-1 rounded-br-lg font-bold">Q1
                     </div>
                     <div class="mt-6 mb-4 font-bold text-slate-600 text-sm">Choose the correct answer.</div>
-                    <p class="text-xl font-bold text-blue-800 mb-6 bg-blue-50 p-4 rounded-lg text-center">(
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) have you known each other?</p>
-                    <div class="space-y-2 mb-auto text-lg text-slate-700 w-full flex-grow flex flex-col justify-end">
+                    <p
+                        class="text-xl font-bold text-blue-800 mb-6 bg-blue-50 p-4 rounded-lg text-center leading-relaxed">
+                        I <span class="border-b-2 border-blue-800 w-16 inline-block"></span> this bag since high school,
+                        so it’s quite old now.</p>
+                    <div
+                        class="space-y-2 mb-auto text-[1.05rem] text-slate-700 w-full flex-grow flex flex-col justify-end">
                         <button
-                            class="w-full text-left px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans1', 'A', 'B', 'B. How long')">A. When</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans1', 'A', 'B', 'B. have had', '<strong>💡포인트</strong><br>have (소유) = 상태동사 → 진행형 ❌<br>“since high school” → 현재완료 ✔')">A.
+                            have been having</button>
                         <button
-                            class="w-full text-left px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans1', 'B', 'B', 'B. How long')">B. How long</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans1', 'B', 'B', 'B. have had', '<strong>💡포인트</strong><br>have (소유) = 상태동사 → 진행형 ❌<br>“since high school” → 현재완료 ✔')">B.
+                            have had</button>
                         <button
-                            class="w-full text-left px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans1', 'C', 'B', 'B. How long')">C. Since</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans1', 'C', 'B', 'B. have had', '<strong>💡포인트</strong><br>have (소유) = 상태동사 → 진행형 ❌<br>“since high school” → 현재완료 ✔')">C.
+                            am having</button>
                         <button
-                            class="w-full text-left px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans1', 'D', 'B', 'B. How long')">D. For</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans1', 'D', 'B', 'B. have had', '<strong>💡포인트</strong><br>have (소유) = 상태동사 → 진행형 ❌<br>“since high school” → 현재완료 ✔')">D.
+                            had</button>
                     </div>
                     <div id="ans1"
                         class="answer-hidden absolute inset-0 text-white flex flex-col items-center justify-center p-6 text-center">
                         <div id="ans1-title" class="text-5xl font-black mb-4"></div>
                         <div id="ans1-desc" class="text-2xl font-bold"></div>
                         <button
-                            class="mt-8 px-6 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-lg font-bold transition"
+                            class="mt-6 px-6 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-lg font-bold transition"
                             onclick="closeAnswer('ans1')">닫기</button>
                     </div>
                 </div>
@@ -1116,29 +1123,36 @@
                     class="bg-white border-2 border-slate-200 rounded-xl p-6 flex flex-col shadow-sm relative overflow-hidden">
                     <div class="absolute top-0 left-0 bg-slate-800 text-white px-4 py-1 rounded-br-lg font-bold">Q2
                     </div>
-                    <div class="mt-6 mb-4 font-bold text-slate-600 text-sm">Choose the correct expression.</div>
-                    <p class="text-xl font-bold text-blue-800 mb-6 bg-blue-50 p-4 rounded-lg text-center">I have lived
-                        here <span class="border-b-2 border-blue-800 w-12 inline-block"></span> 2021.</p>
-                    <div class="space-y-2 mb-auto text-lg text-slate-700 w-full flex-grow flex flex-col justify-end">
+                    <div class="mt-6 mb-4 font-bold text-slate-600 text-sm">Choose the correct answer.</div>
+                    <p
+                        class="text-xl font-bold text-blue-800 mb-6 bg-blue-50 p-4 rounded-lg text-center leading-relaxed">
+                        I haven’t used this app <span class="border-b-2 border-blue-800 w-12 inline-block"></span> a
+                        long time.</p>
+                    <div
+                        class="space-y-2 mb-auto text-[1.05rem] text-slate-700 w-full flex-grow flex flex-col justify-end">
                         <button
-                            class="w-full text-left px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans2', 'A', 'A', 'A. since')">A. since</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans2', 'A', 'B', 'B. for', '<strong>💡포인트</strong><br>a long time = 기간 → for 사용<br>since는 “시점”이라 안 맞음')">A.
+                            since</button>
                         <button
-                            class="w-full text-left px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans2', 'B', 'A', 'A. since')">B. for</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans2', 'B', 'B', 'B. for', '<strong>💡포인트</strong><br>a long time = 기간 → for 사용<br>since는 “시점”이라 안 맞음')">B.
+                            for</button>
                         <button
-                            class="w-full text-left px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans2', 'C', 'A', 'A. since')">C. during</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans2', 'C', 'B', 'B. for', '<strong>💡포인트</strong><br>a long time = 기간 → for 사용<br>since는 “시점”이라 안 맞음')">C.
+                            during</button>
                         <button
-                            class="w-full text-left px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans2', 'D', 'A', 'A. since')">D. from</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans2', 'D', 'B', 'B. for', '<strong>💡포인트</strong><br>a long time = 기간 → for 사용<br>since는 “시점”이라 안 맞음')">D.
+                            from</button>
                     </div>
                     <div id="ans2"
                         class="answer-hidden absolute inset-0 text-white flex flex-col items-center justify-center p-6 text-center">
                         <div id="ans2-title" class="text-5xl font-black mb-4"></div>
                         <div id="ans2-desc" class="text-2xl font-bold"></div>
                         <button
-                            class="mt-8 px-6 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-lg font-bold transition"
+                            class="mt-6 px-6 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-lg font-bold transition"
                             onclick="closeAnswer('ans2')">닫기</button>
                     </div>
                 </div>
@@ -1148,36 +1162,40 @@
                     class="bg-white border-2 border-slate-200 rounded-xl p-6 flex flex-col shadow-sm relative overflow-hidden">
                     <div class="absolute top-0 left-0 bg-slate-800 text-white px-4 py-1 rounded-br-lg font-bold">Q3
                     </div>
-                    <div class="mt-6 mb-4 font-bold text-slate-600 text-sm">What is the correct question?</div>
-                    <div class="mb-4 bg-blue-50 p-4 rounded-lg text-center">
-                        <p class="text-sm text-slate-500 mb-1">정답으로 원하는 정보:</p>
-                        <p class="text-[1.1rem] font-bold text-blue-800">It started raining at 3:00.</p>
+                    <div class="mt-6 mb-4 font-bold text-slate-600 text-sm">Choose the correct answer.</div>
+                    <div
+                        class="mb-4 bg-blue-50 p-4 rounded-xl text-center flex flex-col justify-center flex-grow shadow-inner">
+                        <p class="text-[1.1rem] font-bold text-blue-800 text-left mb-2">A: <span
+                                class="border-b-2 border-blue-800 w-16 inline-block"></span> have you been working on
+                            this project?</p>
+                        <p class="text-[1.1rem] font-bold text-slate-700 text-left">B: I started it last month, so about
+                            three weeks now.</p>
                     </div>
                     <div
                         class="space-y-2 mb-auto text-[1.05rem] text-slate-700 w-full flex-grow flex flex-col justify-end">
                         <button
-                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans3', 'A', 'C', 'C. When did it start raining?')">A. How long has it
-                            been raining?</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans3', 'A', 'A', 'A. How long', '<strong>💡포인트</strong><br>답이 “about three weeks” → 기간 <br>When 쓰면 어색')">A.
+                            How long</button>
                         <button
-                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans3', 'B', 'C', 'C. When did it start raining?')">B. How long did it
-                            rain?</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans3', 'B', 'A', 'A. How long', '<strong>💡포인트</strong><br>답이 “about three weeks” → 기간 <br>When 쓰면 어색')">B.
+                            When</button>
                         <button
-                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans3', 'C', 'C', 'C. When did it start raining?')">C. When did it
-                            start raining?</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans3', 'C', 'A', 'A. How long', '<strong>💡포인트</strong><br>답이 “about three weeks” → 기간 <br>When 쓰면 어색')">C.
+                            Since when</button>
                         <button
-                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition"
-                            onclick="checkAnswer('ans3', 'D', 'C', 'C. When did it start raining?')">D. Since when has
-                            it raining?</button>
+                            class="w-full text-left px-4 py-2 rounded-lg border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition shrink-0 leading-tight"
+                            onclick="checkAnswer('ans3', 'D', 'A', 'A. How long', '<strong>💡포인트</strong><br>답이 “about three weeks” → 기간 <br>When 쓰면 어색')">D.
+                            What time</button>
                     </div>
                     <div id="ans3"
                         class="answer-hidden absolute inset-0 text-white flex flex-col items-center justify-center p-6 text-center">
                         <div id="ans3-title" class="text-5xl font-black mb-4"></div>
                         <div id="ans3-desc" class="text-2xl font-bold"></div>
                         <button
-                            class="mt-8 px-6 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-lg font-bold transition"
+                            class="mt-6 px-6 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-lg font-bold transition"
                             onclick="closeAnswer('ans3')">닫기</button>
                     </div>
                 </div>
@@ -1339,10 +1357,20 @@
         };
 
         // Answer Toggle Logic for Slide 13
-        window.checkAnswer = function (id, selected, correct, correctText) {
+        window.checkAnswer = function (id, selected, correct, correctText, expText = '') {
             const el = document.getElementById(id);
             const title = document.getElementById(id + '-title');
             const desc = document.getElementById(id + '-desc');
+
+            // Find or create explanation element
+            let exp = document.getElementById(id + '-exp');
+            if (!exp) {
+                exp = document.createElement('div');
+                exp.id = id + '-exp';
+                exp.className = 'mt-6 text-base leading-relaxed bg-white/20 p-5 rounded-xl text-left inline-block w-full max-w-md';
+                // Insert before the close button
+                el.insertBefore(exp, el.lastElementChild);
+            }
 
             // Remove previous color classes
             el.classList.remove('bg-green-500', 'bg-red-500', 'answer-hidden');
@@ -1356,6 +1384,13 @@
                 el.classList.add('bg-red-500');
                 title.innerText = '오답.';
                 desc.innerText = '정답: ' + correctText;
+            }
+
+            if (expText) {
+                exp.innerHTML = expText;
+                exp.style.display = 'block';
+            } else {
+                exp.style.display = 'none';
             }
         };
 
