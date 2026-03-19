@@ -341,7 +341,12 @@
             <h2 class="slide-title">Present Perfect: Simple vs Continuous</h2>
             <div class="content-body grid grid-cols-2 gap-x-12 gap-y-8 h-full">
 
-                <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-200 relative cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all group"
+                    onclick="toggleExpandCard(this)">
+                    <div
+                        class="absolute top-4 right-4 bg-blue-200 text-blue-800 text-sm font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-expand mr-1"></i>확대
+                    </div>
                     <h3 class="font-bold text-xl mb-3 text-blue-800">1) Continuous가 자주 쓰이는 경우</h3>
                     <p class="text-base text-slate-600 mb-3">특히 <strong>얼마나 오래 (How long)</strong>라고 물을 때</p>
                     <ul class="list-disc list-inside text-lg space-y-1">
@@ -352,7 +357,12 @@
                     </ul>
                 </div>
 
-                <div class="bg-red-50/50 p-6 rounded-xl border border-red-100">
+                <div class="bg-red-50 p-6 rounded-xl border border-red-200 relative cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all group"
+                    onclick="toggleExpandCard(this)">
+                    <div
+                        class="absolute top-4 right-4 bg-red-200 text-red-800 text-sm font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-expand mr-1"></i>확대
+                    </div>
                     <h3 class="font-bold text-xl mb-3 text-red-800">2) Continuous를 잘 안 쓰는 동사</h3>
                     <p class="text-base text-slate-600 mb-3">상태동사: <strong>know, like, have</strong> 등</p>
                     <ul class="list-disc list-inside text-lg space-y-1">
@@ -361,7 +371,12 @@
                     </ul>
                 </div>
 
-                <div class="bg-green-50/50 p-6 rounded-xl border border-green-100">
+                <div class="bg-green-50 p-6 rounded-xl border border-green-200 relative cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all group"
+                    onclick="toggleExpandCard(this)">
+                    <div
+                        class="absolute top-4 right-4 bg-green-200 text-green-800 text-sm font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-expand mr-1"></i>확대
+                    </div>
                     <h3 class="font-bold text-xl mb-3 text-green-800">3) 둘 다 가능한 경우</h3>
                     <p class="text-base text-slate-600 mb-3"><strong>live, work</strong></p>
                     <ul class="list-disc list-inside text-lg space-y-1">
@@ -370,7 +385,12 @@
                     </ul>
                 </div>
 
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 relative cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all group"
+                    onclick="toggleExpandCard(this)">
+                    <div
+                        class="absolute top-4 right-4 bg-slate-200 text-slate-800 text-sm font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-expand mr-1"></i>확대
+                    </div>
                     <h3 class="font-bold text-xl mb-3 text-slate-800">4) 단순형만 쓰는 경우</h3>
                     <p class="text-base text-slate-600 mb-3"><strong>always</strong>와 함께는 보통 simple</p>
                     <ul class="list-disc list-inside text-lg space-y-1">
@@ -1037,7 +1057,7 @@
                     <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center gap-2"><i
                             class="fa-solid fa-magnifying-glass"></i> 비판적으로 본 부분 (AI의 한계 보완)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700 text-lg">
-                        <li>프롬프트 조건이 명확하지 않으면 의도와 다른 결과가 생성될 수 있음.</li>
+                        <li>프롬프트 조건이 명확하지 않으면 의도와 다른 결과가 생성될 수 있음</li>
                         <li>이미지 파일 분석 시 오타 또는 일부 정보 누락 발생 가능</li>
                         <li>문장 생성 시 문맥을 충분히 고려하지 못해 의미가 어색해질 수 있음</li>
                         <li>유사한 구조의 문제를 반복 생성하는 경향이 있음</li>
@@ -1293,6 +1313,8 @@
 
         // Keyboard Navigation
         document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 nextSlide();
             } else if (e.key === 'ArrowLeft') {
@@ -1581,6 +1603,48 @@
         let processImageIndex = 0;
         const processImagesList = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '6-1.png', '7.png'];
         const maxProcessImages = processImagesList.length;
+
+        // Card Expand Logic for Slide 4 
+        window.toggleExpandCard = function (el) {
+            let overlay = document.getElementById('card-expand-overlay');
+            if (overlay) return; // already opening/open
+
+            // Create overlay
+            overlay = document.createElement('div');
+            overlay.id = 'card-expand-overlay';
+            overlay.className = 'absolute inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-12 cursor-pointer transition-opacity duration-300 opacity-0';
+
+            overlay.onclick = () => {
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.remove(), 300);
+            };
+
+            // Clone the element
+            let clone = el.cloneNode(true);
+            clone.removeAttribute('onclick'); // prevent recursion
+
+            // Adjust clone classes to enlarge and remove hover states
+            let additionalClasses = 'max-w-4xl w-full transform scale-[1.3] shadow-2xl m-0 cursor-pointer overflow-hidden !transition-none';
+            // clean up some hover classes from the copy
+            clone.className = el.className.replace('hover:-translate-y-1', '').replace('hover:shadow-lg', '') + ' ' + additionalClasses;
+
+            // Update the badge
+            let badge = clone.querySelector('.absolute.top-4.right-4');
+            if (badge) {
+                badge.innerHTML = '<i class="fa-solid fa-times mr-1"></i>닫기';
+                badge.classList.remove('opacity-0', 'group-hover:opacity-100');
+            }
+
+            overlay.appendChild(clone);
+            el.closest('.slide').appendChild(overlay);
+
+            // trigger fade-in
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0');
+                overlay.classList.add('opacity-100');
+            }, 10);
+        }
 
         window.nextProcessImage = function (e) {
             processImageIndex++;
